@@ -6,3 +6,5 @@ InteractionLayer/ArmInteractionLayer/Library/StateCache
 InteractionLayer/ArmInteractionLayer/Library/metadata
 shadercompiler*
 InteractionLayer/ArmInteractionLayer/Library
+InteractionLayer/ArmInteractionLayer/obj
+InteractionLayer/ArmInteractionLayer/.vs/ArmInteractionLayer/v15
