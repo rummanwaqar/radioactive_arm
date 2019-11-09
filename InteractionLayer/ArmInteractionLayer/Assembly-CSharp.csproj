@@ -246,10 +246,16 @@
     <Compile Include="Assets\LeapMotion\Core\Scripts\Utils\XRSupportUtil.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\XR\LeapEyeDislocator.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\XR\XRHeightOffset.cs" />
+    <Compile Include="Assets\Src\ArmInteractionCore\ICoroutineExecutor.cs" />
+    <Compile Include="Assets\Src\ArmInteractionCore\IGameManager.cs" />
+    <Compile Include="Assets\Src\ArmInteractionCore\IGameStateReader.cs" />
+    <Compile Include="Assets\Src\ArmInteractionCore\IManager.cs" />
+    <Compile Include="Assets\Src\ArmInteractionCore\ITableObjectSpawner.cs" />
     <Compile Include="Assets\Src\ArmInteractionCore\IWebSocketManager.cs" />
     <Compile Include="Assets\Src\BootBehaviour.cs" />
     <Compile Include="Assets\Src\GameLayer\CubeSpawner.cs" />
     <Compile Include="Assets\Src\GameLayer\GameManager.cs" />
+    <Compile Include="Assets\Src\WebSocketLayer\GameStateReader.cs" />
     <Compile Include="Assets\Src\WebSocketLayer\WebSocketManager.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\CinematicEffects(ALPHA)\AntiAliasing\AntiAliasing.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\CinematicEffects(BETA)\Common\ImageEffectHelper.cs" />

@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ArmInteractionCore;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WebSocketSharp;
-using Newtonsoft.Json;
-using ArmInteractionCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WebSocketLayer
 {
@@ -13,13 +11,13 @@ namespace WebSocketLayer
     {
         private JObject receivedData;
 
-        //const string URL = "ws://192.168.244.197:8765/";
         const string localURL = "ws://127.0.0.1:8765/";
 
         private readonly WebSocket WebSocket;
         private readonly ICoroutineExecutor coroutineExecutor;
 
         public event Action<IEnumerable<Vector3>> OnPoseReceived;
+        private readonly GameStateReader gameStateReader;
 
         public WebSocketManager(string webSocketURL = localURL)
         {
@@ -27,35 +25,16 @@ namespace WebSocketLayer
             WebSocket.OnMessage += OnMessage;
             WebSocket.OnMessage += TriggerCubeSpawn;
 
-            cubeDirectory = new Dictionary<int, Vector3>();
+            gameStateReader = new GameStateReader();
         }
-
-        private Dictionary<int, Vector3> cubeDirectory;
 
         private void TriggerCubeSpawn(object sender, MessageEventArgs e)
         {
-            cubeDirectory.Clear();
-
-            var o = JObject.Parse(e.Data);
-            JToken token;
-
-            if (o.TryGetValue("scene_objects", out token))
+            if(gameStateReader.TryParseState(e.Data))
             {
-                var array = JArray.Parse(token.ToString());
-                foreach(JObject item in array)
-                {
-                    int.TryParse(item.GetValue("id").ToString(), out int index);
-                    var blah = item.GetValue("position").Values <float>().ToArray();
-                    var position = new Vector3(blah[0], blah[1], blah[2]);
-                    cubeDirectory[index] = position;
-                }
+                OnPoseReceived?.Invoke(gameStateReader.CubePositions);
+                WebSocket.OnMessage -= TriggerCubeSpawn; //TODO: Spawning cubes only one. Would need to make a Cube registry to keep track of all the cubes in the scene
             }
-            else
-            {
-                Debug.LogError("Error: Cannot find field scene_objects");
-            }
-
-            OnPoseReceived?.Invoke(cubeDirectory.Values);
         }
 
         public void ConnectWebSocket()
