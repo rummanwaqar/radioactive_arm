@@ -8,3 +8,5 @@ shadercompiler*
 InteractionLayer/ArmInteractionLayer/Library
 InteractionLayer/ArmInteractionLayer/obj
 InteractionLayer/ArmInteractionLayer/.vs/ArmInteractionLayer/v15
+*/.vscode/
+*/__pycache__/
