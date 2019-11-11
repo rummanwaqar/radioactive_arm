@@ -1,0 +1,15 @@
+{
+    "grid": [11, 5],
+    "objects": [
+        {
+            "type": "cube0",
+            "position": [0,0,0]
+        }, {
+            "type": "cube1",
+            "position": [0,0,1]
+        }, {
+            "type": "cube2",
+            "position": [0,0,2]
+        }
+    ]
+}
